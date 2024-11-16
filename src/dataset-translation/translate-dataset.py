@@ -53,5 +53,5 @@ def write_topics(topics, translator):
 if __name__ == 'main':
     topics = load_topics()
     translator = deepl_translator()
-    
+
     write_topics(topics, translator)
