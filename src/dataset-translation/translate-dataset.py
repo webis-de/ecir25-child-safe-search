@@ -14,7 +14,7 @@ def deepl_translator():
 
 def load_topics():
     import xml.etree.ElementTree as ET
-    tree = ET.parse('data/de/topics.xml')
+    tree = ET.parse('data/do-not-commit/topics.xml')
     ret = []
     for topic in tree.getroot().iter('topic'):
         ret += [{
@@ -28,17 +28,18 @@ def load_topics():
     return ret
 
 
-topics = load_topics()
-translator = deepl_translator()
+def write_topics(topics, translator):
+    if os.path.exists('data/en/topics.xml'):
+        return
 
-with open('data/en/topics.xml', 'wt') as f:
-    ret = []
-    for topic in tqdm(topics):
-        topic['query'] = translator.translate_text(topic['query'], source_lang="DE", target_lang="EN-US").text
-        topic['description'] = translator.translate_text(topic['description'], source_lang="DE", target_lang="EN-US").text
-        topic['narrative'] = translator.translate_text(topic['narrative'], source_lang="DE", target_lang="EN-US").text
+    with open('data/en/topics.xml', 'wt') as f:
+        ret = []
+        for topic in tqdm(topics):
+            topic['query'] = translator.translate_text(topic['query'], source_lang="DE", target_lang="EN-US").text
+            topic['description'] = translator.translate_text(topic['description'], source_lang="DE", target_lang="EN-US").text
+            topic['narrative'] = translator.translate_text(topic['narrative'], source_lang="DE", target_lang="EN-US").text
 
-        ret += ['''  <topic number="''' + str(topic['number']) + '''">
+            ret += ['''  <topic number="''' + str(topic['number']) + '''">
     <query>''' + topic['query'] + '''</query>
     <category>''' + topic['category'] + '''</category>
     <description>''' + topic['description'].replace('\\s', ' ').strip() + '''</description>
@@ -46,4 +47,11 @@ with open('data/en/topics.xml', 'wt') as f:
   </topic>
 ''']
 
-    f.write('<topics>' + (''.join(ret)) + '</topics>')
+        f.write('<topics>' + (''.join(ret)) + '</topics>')
+
+
+if __name__ == 'main':
+    topics = load_topics()
+    translator = deepl_translator()
+    
+    write_topics(topics, translator)
