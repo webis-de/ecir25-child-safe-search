@@ -1,5 +1,9 @@
 #!/usr/bin/env python3
 from tqdm import tqdm
+import os
+import gzip
+import json
+
 
 def deepl_translator():
     import deepl
@@ -50,8 +54,35 @@ def write_topics(topics, translator):
         f.write('<topics>' + (''.join(ret)) + '</topics>')
 
 
-if __name__ == 'main':
+def write_documents(translator):
+    translated_docs = {}
+    if os.path.exists('data/en/documents.jsonl.gz'):
+        with gzip.open('data/en/documents.jsonl.gz', 'rt') as f:
+            for l in f:
+                l = json.loads(l)
+                translated_docs[l['docno']] = l
+
+    with gzip.open('data/do-not-commit/documents.jsonl.gz', 'rt') as f, gzip.open('data/en/documents.jsonl.gz', 'wt') as output:
+        for l in tqdm(list(f)):
+            l = json.loads(l)
+            translated = {'docno': l['docno']}
+            if l['docno'] in translated_docs:
+                for k, v in translated_docs[l['docno']].items():
+                    translated[k] = v
+            for field_to_translate in ['snippet']:
+                if field_to_translate not in translated:
+                    if not l[field_to_translate] or len(l[field_to_translate]) == 0:
+                        translated[field_to_translate] = ''
+                    else:
+                        translated[field_to_translate] = translator.translate_text(l[field_to_translate], source_lang="DE", target_lang="EN-US").text
+            output.write(json.dumps(translated) + '\n')
+            output.flush()
+
+
+if __name__ == '__main__':
     topics = load_topics()
     translator = deepl_translator()
 
     write_topics(topics, translator)
+
+    write_documents(translator)
