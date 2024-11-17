@@ -1,6 +1,6 @@
 # ECIR25 (Under Review): How Child-Friendly is Web Search? An Evaluation of Relevance vs. Harm
 
-This repository contains the code and the data for our evaluation for child-friendly search. We compare three general and three child-oriented web search engines based on a new non-English evaluation corpus of 50 queries spanning personal, political, educational, and entertainment information needs of children. For each query, we annotate the search engines’ top-10 results with respect to relevance and potential harm: a child-friendly result should be relevant but harmless.
+This repository contains the code and the data for our evaluation of web search child-friendliness. We compare three general and three child-oriented web search engines based on a new non-English evaluation corpus of 50 queries spanning personal, political, educational, and entertainment information needs of children. For each query, we annotate the search engines’ top-10 results with respect to relevance and potential harm: a child-friendly result should be relevant but harmless.
 
 ## English  Version of our Dataset
 
