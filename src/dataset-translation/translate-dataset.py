@@ -69,12 +69,13 @@ def write_documents(translator):
             if l['docno'] in translated_docs:
                 for k, v in translated_docs[l['docno']].items():
                     translated[k] = v
-            for field_to_translate in ['snippet']:
+            for field_to_translate in ['snippet', 'title', 'main_content']:
                 if field_to_translate not in translated:
                     if not l[field_to_translate] or len(l[field_to_translate]) == 0:
                         translated[field_to_translate] = ''
                     else:
-                        translated[field_to_translate] = translator.translate_text(l[field_to_translate], source_lang="DE", target_lang="EN-US").text
+                        translated[field_to_translate] = translator.translate_text(l[field_to_translate][:50000], source_lang="DE", target_lang="EN-US").text
+
             output.write(json.dumps(translated) + '\n')
             output.flush()
 
