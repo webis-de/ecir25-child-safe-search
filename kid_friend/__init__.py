@@ -64,11 +64,6 @@ QRELS_DEFS = {
     }
 }
 
-print(len(kid_friend_documents))
-
-def load_qrels(qrels_type):
-    pass
-
 for qrel_type in ['harm', 'relevance']:
     qrels = TrecQrels(string_file(f'qrels-{qrel_type}.txt'), QRELS_DEFS[qrel_type])
     queries = TrecXmlQueries(string_file(f'topics.xml'), qtype_map={'query': 'title', 'description': 'description', 'narrative': 'narrative'})

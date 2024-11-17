@@ -5,7 +5,7 @@ from kid_friend import ir_datasets
 REL_QREL_EXAMPLE = "TrecQrel(query_id='50', doc_id='e4adf192c95d4114a131174f6df262dd', relevance=2, iteration='0')"
 
 # One harm entry
-HARM_QREL_EXAMPLE = "TrecQrel(query_id='50', doc_id='3664b360aff64980acebf306dbdafc16', relevance=2, iteration='0')"
+HARM_QREL_EXAMPLE = "TrecQrel(query_id='50', doc_id='fe7fffdae20e4521a223bf749a9d3877', relevance=2, iteration='0')"
 
 class TestDataset(unittest.TestCase):
     def test_topics_for_harm_dataset(self):
