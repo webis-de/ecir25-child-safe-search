@@ -14,6 +14,35 @@ The structure of the dataset is:
 - [data/en/qrels-harm.txt](data/en/qrels-harm.txt): The qrel file containing the harm annotations.
 - [data/en/qrels-relevance.txt](data/en/qrels-relevance.txt): The qrel file containing the relevance annotations.
 
+## Unit Tests
+
+Run `pytest` to run the unit tests (that mainly test the ir_datasets integration).
+
+## Integration to ir_datasets
+
+This repository provides an integration to [ir_datasets](https://ir-datasets.com/). To use it, please install the kid-FRIEND dataset via the as ir_datasets plugin:
+
+```
+pip3 install -e .
+```
+
+Afterwards, you can load and process the ir_dataset via:
+
+```
+from kid_friend import ir_datasets
+
+dataset = ir_datasets.load('kidFRIEND/en/relevance') # Alternatively kidFRIEND/en/harm
+
+for query in dataset.queries_iter():
+    print(query)
+
+for doc in dataset.docs_iter():
+    print(doc)
+
+for qrel in dataset.qrels_iter():
+    print(qrel)
+```
+
 ### Citation
 
 TBD.
