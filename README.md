@@ -1,16 +1,16 @@
 # ECIR25 (Under Review): How Child-Friendly is Web Search? An Evaluation of Relevance vs. Harm
 
-This repository contains the code and the data for our evaluation for child-safe search. We compared three general and three child-oriented web search engines based on a new non-English evaluation corpus of 50 queries spanning personal, political, educational, and entertainment information needs of children. For each query, we annotate the search engines’ top-10 results with respect to relevance and potential harm—a child-friendly result should be relevant but harmless.
+This repository contains the code and the data for our evaluation for child-friendly search. We compare three general and three child-oriented web search engines based on a new non-English evaluation corpus of 50 queries spanning personal, political, educational, and entertainment information needs of children. For each query, we annotate the search engines’ top-10 results with respect to relevance and potential harm: a child-friendly result should be relevant but harmless.
 
 ## English  Version of our Dataset
 
-In the version for Double-Blind review, we include a DeepL translation of our non-English evaluation corpus to English. Upon acceptance, we will release the original non-English corpus (language omitted for double-blind review) and the DeepL translations.
+In the version for double-blind review, we include a DeepL translation of our non-English evaluation corpus to English. Upon acceptance, we will release the original non-English corpus (language omitted for double-blind review) and the DeepL translations.
 
 The structure of the dataset is:
 
 - [data/en/documents.jsonl.gz](data/en/documents.jsonl.gz): The documents.
 - [data/en/runs](data/en/runs): The run files for the six search engines (three general web search engines and three child-oriented search engines).
-- [data/en/topics.xml](data/en/topics.xml): The topics, including the query, category, description, and narrative.
+- [data/en/topics.xml](data/en/topics.xml): The topics, each including a query, a category, a description, and a narrative.
 - [data/en/qrels-harm.txt](data/en/qrels-harm.txt): The qrel file containing the harm annotations.
 - [data/en/qrels-relevance.txt](data/en/qrels-relevance.txt): The qrel file containing the relevance annotations.
 
@@ -20,7 +20,7 @@ Run `pytest` to run the unit tests (that mainly test the ir_datasets integration
 
 ## Integration to ir_datasets
 
-This repository provides an integration to [ir_datasets](https://ir-datasets.com/). To use it, please install the kid-FRIEND dataset via the as ir_datasets plugin:
+This repository provides an integration to [ir_datasets](https://ir-datasets.com/). To use it, please install the kid-FRIEND dataset via the ir_datasets plugin:
 
 ```
 pip3 install -e .
