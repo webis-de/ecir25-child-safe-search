@@ -37,6 +37,8 @@ class KidFriendDocs(BaseDocs):
 
         return ret
 
+    def docs_count(self):
+        return len(self.document_dictionary)
 
 def load_documents():
     ret = {}
