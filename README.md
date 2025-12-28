@@ -25,6 +25,14 @@ If you use the kid-FRIEND dataset in your research, please cite:
 ## German Version of our Dataset
 
 The original version of our dataset is in German, we include a English translation for simplified usage as well.
+The structure of the dataset is:
+
+- [data/de/inputs/documents.jsonl.gz](data/en/inputs/documents.jsonl.gz): The documents.
+- [data/de/runs](data/de/runs): The run files for the six search engines (three general web search engines and three child-oriented search engines).
+- [data/de/inputs/topics.xml](data/de/inputs/topics.xml): The topics, each including a query, a category, a description, and a narrative.
+- [data/de/qrels/qrels-harm.txt](data/de/qrels/qrels-harm.txt): The qrel file containing the harm annotations.
+- [data/de/qrels/qrels-relevance.txt](data/de/qrels/qrels-relevance.txt): The qrel file containing the relevance annotations.
+
 
 ## English  Version of our Dataset
 
@@ -32,11 +40,11 @@ We include a DeepL translation of our non-English evaluation corpus to English. 
 
 The structure of the dataset is:
 
-- [data/en/documents.jsonl.gz](data/en/documents.jsonl.gz): The documents.
+- [data/en/inputs/documents.jsonl.gz](data/en/inputs/documents.jsonl.gz): The documents.
 - [data/en/runs](data/en/runs): The run files for the six search engines (three general web search engines and three child-oriented search engines).
-- [data/en/topics.xml](data/en/topics.xml): The topics, each including a query, a category, a description, and a narrative.
-- [data/en/qrels-harm.txt](data/en/qrels-harm.txt): The qrel file containing the harm annotations.
-- [data/en/qrels-relevance.txt](data/en/qrels-relevance.txt): The qrel file containing the relevance annotations.
+- [data/en/inputs/topics.xml](data/en/inputs/topics.xml): The topics, each including a query, a category, a description, and a narrative.
+- [data/en/qrels/qrels-harm.txt](data/en/qrels/qrels-harm.txt): The qrel file containing the harm annotations.
+- [data/en/qrels/qrels-relevance.txt](data/en/qrels/qrels-relevance.txt): The qrel file containing the relevance annotations.
 
 ## Unit Tests
 
@@ -66,8 +74,4 @@ for doc in dataset.docs_iter():
 for qrel in dataset.qrels_iter():
     print(qrel)
 ```
-
-### Citation
-
-TBD.
 

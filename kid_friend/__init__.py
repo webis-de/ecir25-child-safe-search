@@ -41,18 +41,16 @@ class KidFriendDocs(BaseDocs):
     def docs_count(self):
         return len(self.document_dictionary)
 
-def load_documents():
+def load_documents(lang):
     ret = {}
-    with gzip.open(BASE_DIR / 'data' / 'en' / 'inputs' / 'documents.jsonl.gz', 'rt') as f:
+    with gzip.open(BASE_DIR / 'data' / lang / 'inputs' / 'documents.jsonl.gz', 'rt') as f:
         for l in f:
             l = json.loads(l)
             ret[l['docno']] = l
     return ret
 
-def string_file(resource):
-    return StringFile(open(BASE_DIR / 'data' / 'en' / resource, 'r').read())
-
-kid_friend_documents = load_documents()
+def string_file(lang, resource):
+    return StringFile(open(BASE_DIR / 'data' / lang / resource, 'r').read())
 
 QRELS_DEFS = {
     'harm': {
@@ -67,14 +65,15 @@ QRELS_DEFS = {
     }
 }
 
-for qrel_type in ['harm', 'relevance']:
-    qrels = TrecQrels(string_file(f'qrels/qrels-{qrel_type}.txt'), QRELS_DEFS[qrel_type])
-    queries = TrecXmlQueries(string_file(f'inputs/topics.xml'), qtype_map={'query': 'title', 'description': 'description', 'narrative': 'narrative'})
-    docs = KidFriendDocs(kid_friend_documents)
-    scoreddocs = None
+for lang in ["en", "de"]:
+    for qrel_type in ['harm', 'relevance']:
+        qrels = TrecQrels(string_file(lang, f'qrels/qrels-{qrel_type}.txt'), QRELS_DEFS[qrel_type])
+        queries = TrecXmlQueries(string_file(lang, f'inputs/topics.xml'), qtype_map={'query': 'title', 'description': 'description', 'narrative': 'narrative'})
+        docs = KidFriendDocs(load_documents(lang))
+        scoreddocs = None
 
-    dataset = Dataset(docs, queries, qrels, scoreddocs)
-    dataset.metadata = None
+        dataset = Dataset(docs, queries, qrels, scoreddocs)
+        dataset.metadata = None
     
-    ir_datasets.registry.register(f'kidFRIEND/en/{qrel_type}', dataset)
+        ir_datasets.registry.register(f'kidFRIEND/{lang}/{qrel_type}', dataset)
 
