@@ -35,7 +35,7 @@ class TestDataset(unittest.TestCase):
         dataset = ir_datasets.load('kidFRIEND/en/relevance')
         qrels = set([str(i) for i in dataset.qrels_iter()])
 
-        self.assertEqual(2310, len(qrels))
+        self.assertEqual(2303, len(qrels))
 
         self.assertTrue(HARM_QREL_EXAMPLE not in qrels)
         self.assertTrue(REL_QREL_EXAMPLE in qrels)

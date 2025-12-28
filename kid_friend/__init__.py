@@ -8,6 +8,7 @@ import gzip
 import pathlib
 BASE_DIR = pathlib.Path(__file__).parent.parent.resolve()
 
+__version__ = '0.0.1'
 
 class KidFriendDoc(NamedTuple):
     doc_id: str
