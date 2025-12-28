@@ -42,7 +42,7 @@ class KidFriendDocs(BaseDocs):
 
 def load_documents():
     ret = {}
-    with gzip.open(BASE_DIR / 'data' / 'en' / 'documents.jsonl.gz', 'rt') as f:
+    with gzip.open(BASE_DIR / 'data' / 'en' / 'inputs' / 'documents.jsonl.gz', 'rt') as f:
         for l in f:
             l = json.loads(l)
             ret[l['docno']] = l
@@ -67,8 +67,8 @@ QRELS_DEFS = {
 }
 
 for qrel_type in ['harm', 'relevance']:
-    qrels = TrecQrels(string_file(f'qrels-{qrel_type}.txt'), QRELS_DEFS[qrel_type])
-    queries = TrecXmlQueries(string_file(f'topics.xml'), qtype_map={'query': 'title', 'description': 'description', 'narrative': 'narrative'})
+    qrels = TrecQrels(string_file(f'qrels/qrels-{qrel_type}.txt'), QRELS_DEFS[qrel_type])
+    queries = TrecXmlQueries(string_file(f'inputs/topics.xml'), qtype_map={'query': 'title', 'description': 'description', 'narrative': 'narrative'})
     docs = KidFriendDocs(kid_friend_documents)
     scoreddocs = None
 

@@ -5,16 +5,30 @@ This repository contains the code and the data for our evaluation of web search 
 If you use the kid-FRIEND dataset in your research, please cite:
 
 ```
-TBD.
+@InProceedings{froebe:2025d,
+  address =                  {Cham, Switzerland},
+  author =                   {Maik Fr{\"o}be and Sophie Charlotte Bartholly and Matthias Hagen},
+  booktitle =                {Advances in Information Retrieval. 47th European Conference on IR Research (ECIR 2025)},
+  doi =                      {10.1007/978-3-031-88717-8\_16},
+  editor =                   {Claudia Hauff and Craig Macdonald and Dietmar Jannach and Gabriella Kazai and Franco Maria Nardini and Fabio Pinelli and Fabrizio Silvestri and Nicola Tonellotto},
+  month =                    apr,
+  pages =                    {214--222},
+  publisher =                {Springer Nature},
+  series =                   {Lecture Notes in Computer Science},
+  site =                     {Lucca, Italy},
+  title =                    {{How Child-Friendly is Web Search? An Evaluation of Relevance vs. Harm}},
+  volume =                   15575,
+  year =                     2025
+}
 ```
 
 ## German Version of our Dataset
 
-TBD
+The original version of our dataset is in German, we include a English translation for simplified usage as well.
 
 ## English  Version of our Dataset
 
-In the version for double-blind review, we include a DeepL translation of our non-English evaluation corpus to English. Upon acceptance, we will release the original non-English corpus (language omitted for double-blind review) and the DeepL translations.
+We include a DeepL translation of our non-English evaluation corpus to English. Upon acceptance, we will release the original non-English corpus (language omitted for double-blind review) and the DeepL translations.
 
 The structure of the dataset is:
 
